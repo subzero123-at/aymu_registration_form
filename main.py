@@ -27,6 +27,19 @@ def submit_form():
     confirmation_label.pack(padx=20, pady=50)
 
 
+def reset_form():
+    name_entry.delete(0, tk.END)
+    class_var.set("")
+    email_entry.delete(0, tk.END)
+    gender_var.set("")
+    country_var.set("")
+    address_text.delete(1.0, tk.END)
+    phone_entry.delete(0, tk.END)
+    father_name_entry.delete(0, tk.END)
+    year_var.set("1st Year")
+    semester_var.set("1st Semester")
+
+
 root = tk.Tk()
 root.title("Registration Form")
 
@@ -73,9 +86,45 @@ country_dropdown = ttk.Combobox(registration_frame, textvariable=country_var,
                                 values=["Canada", "India", "UK", "Japan", "Iceland", "South Africa"])
 country_dropdown.grid(row=4, column=1, padx=5, pady=5)
 
+# Address field
+address_label = ttk.Label(registration_frame, text="Address:")
+address_label.grid(row=5, column=0, padx=5, pady=5)
+address_text = tk.Text(registration_frame, width=30, height=5)
+address_text.grid(row=5, column=1, padx=5, pady=5)
+
+# Phone Number field
+phone_label = ttk.Label(registration_frame, text="Phone Number:")
+phone_label.grid(row=6, column=0, padx=5, pady=5)
+phone_entry = ttk.Entry(registration_frame)
+phone_entry.grid(row=6, column=1, padx=5, pady=5)
+
+# Father's Name field
+father_name_label = ttk.Label(registration_frame, text="Father's Name:")
+father_name_label.grid(row=7, column=0, padx=5, pady=5)
+father_name_entry = ttk.Entry(registration_frame)
+father_name_entry.grid(row=7, column=1, padx=5, pady=5)
+
+# Year and Semester fields
+year_label = ttk.Label(registration_frame, text="Year:")
+year_label.grid(row=8, column=0, padx=5, pady=5)
+year_var = tk.StringVar()
+year_dropdown = ttk.Combobox(registration_frame, textvariable=year_var,
+                             values=["1st Year", "2nd Year", "3rd Year", "4th Year"])
+year_dropdown.grid(row=8, column=1, padx=5, pady=5)
+
+semester_label = ttk.Label(registration_frame, text="Semester:")
+semester_label.grid(row=9, column=0, padx=5, pady=5)
+semester_var = tk.StringVar()
+semester_dropdown = ttk.Combobox(registration_frame, textvariable=semester_var, values=["1st Semester", "2nd Semester"])
+semester_dropdown.grid(row=9, column=1, padx=5, pady=5)
+
+# Reset Button
+reset_button = ttk.Button(registration_frame, text="Reset", command=reset_form)
+reset_button.grid(row=10, column=0, columnspan=2, pady=10)
+
 # Submit button
 submit_button = ttk.Button(registration_frame, text="Submit", command=submit_form)
-submit_button.grid(row=5, column=0, columnspan=2, pady=10)
+submit_button.grid(row=10, column=1, columnspan=2, pady=10)
 
 # Start the main event loop
 root.mainloop()
